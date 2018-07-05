@@ -29,7 +29,7 @@ class DataProvider  {
     }
     
     func loadLocations(withCompletion copmletion: @escaping (String?, Array<LocationModel>?) -> Void) {
-        var urlString = "http://bit.ly/test-locations"
+        let urlString = "http://bit.ly/test-locations"
         _ = self.sessionManager.downloadData(by: urlString) { (errorStr, responseData) in
             self.parseAndSaveLocationsFromData(data: responseData, withCompletion: { (error, locations) in
                 if let locs = locations {

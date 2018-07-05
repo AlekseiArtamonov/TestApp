@@ -18,7 +18,7 @@ class UserLocationService: NSObject, UserLocationServiceProtocol,  CLLocationMan
     internal let locationManager = CLLocationManager()
     var delegate: UserLocationServiceDelegate?
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: Array<CLLocation>) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         print("locations = \(locValue.latitude) \(locValue.longitude)")
         NotificationCenter.default.post(Notification(name: userLocationUpdatedNotification))
@@ -38,8 +38,7 @@ class UserLocationService: NSObject, UserLocationServiceProtocol,  CLLocationMan
         self.locationManager.requestWhenInUseAuthorization() // For use in foreground
         
         if CLLocationManager.locationServicesEnabled() {
-            weak var weakSelf = self
-            self.locationManager.delegate = weakSelf
+            self.locationManager.delegate = self
             self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             self.locationManager.startUpdatingLocation()
         }

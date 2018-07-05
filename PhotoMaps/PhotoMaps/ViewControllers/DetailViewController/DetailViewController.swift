@@ -116,6 +116,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         self.scrollView.scrollToView(view: textField, animated: true)
     }
@@ -143,13 +144,9 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         }
         return true
     }
-    internal func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            noteTextView.text = "Placeholder"
-            noteTextView.textColor = UIColor.lightGray
-        }
-        textView.resignFirstResponder()
-    }
+//    internal func textViewDidEndEditing(_ textView: UITextView) {
+//        textView.resignFirstResponder()
+//    }
 
     
 // Keyboard Methods

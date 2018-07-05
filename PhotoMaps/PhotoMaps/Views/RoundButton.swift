@@ -12,6 +12,6 @@ class RoundButton: UIButton {
     override func awakeFromNib() {
         super.awakeFromNib()
         layer.borderWidth = 0
-        layer.cornerRadius = self.frame.size.width/2
+        layer.cornerRadius = self.frame.size.width / 2
     }
 }

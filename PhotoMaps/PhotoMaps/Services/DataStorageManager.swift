@@ -67,7 +67,7 @@ class DataStorageManager {
         self.persistentContainer.performBackgroundTask { (context) in 
             var elements: Array<LocationModel> = []
             do {
-                let result: [Location] = try context.fetch(Location.fetchRequest())
+                let result: Array<Location> = try context.fetch(Location.fetchRequest())
                 
                 for fetchedObject: Location in result
                 {
@@ -202,14 +202,14 @@ class DataStorageManager {
     func clearStorage(withCompletion completion: @escaping () -> Void) {
         self.persistentContainer.performBackgroundTask { (context) in
             do {
-                let result: [Location] = try context.fetch(Location.fetchRequest())
+                let result: Array<Location> = try context.fetch(Location.fetchRequest())
                 
                 for fetchedObject: Location in result
                 {
                     context.delete(fetchedObject)
                 }
                 
-                let notesResult : [Note] = try context.fetch(Note.fetchRequest())
+                let notesResult: Array<Note> = try context.fetch(Note.fetchRequest())
                 
                 for fetchedObject: Note in notesResult
                 {

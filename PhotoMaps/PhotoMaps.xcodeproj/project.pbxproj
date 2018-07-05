@@ -174,7 +174,7 @@
 				3336E90E20EA87EC0095EC15 /* Protocols */,
 				333FFEA520EA79EE0078B18F /* Models */,
 				333FFE9D20EA75F40078B18F /* Utils */,
-				333FFE9420EA61030078B18F /* Servises */,
+				333FFE9420EA61030078B18F /* Services */,
 				333FFE8C20EA5DF20078B18F /* ViewControllers */,
 				333FFE8B20EA5DDE0078B18F /* Storyboards */,
 				333FFE5A20EA5A8D0078B18F /* AppDelegate.swift */,
@@ -231,7 +231,7 @@
 			path = MapViewController;
 			sourceTree = "<group>";
 		};
-		333FFE9420EA61030078B18F /* Servises */ = {
+		333FFE9420EA61030078B18F /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				333FFE9520EA61290078B18F /* SessionManager.swift */,
@@ -239,7 +239,7 @@
 				3336E91720EA9CCC0095EC15 /* UserLocationService.swift */,
 				33845AA820EB65AF00C3F38F /* DataStorageManager.swift */,
 			);
-			path = Servises;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		333FFE9D20EA75F40078B18F /* Utils */ = {
