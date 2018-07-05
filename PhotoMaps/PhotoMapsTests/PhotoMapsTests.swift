@@ -39,11 +39,6 @@ class PhotoMapsTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
  
     
     func testDataProvider_loadLocations_normal() {
@@ -64,7 +59,7 @@ class PhotoMapsTests: XCTestCase {
             }
             expectation.fulfill()
         })
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 3, handler: nil)
     }
     
     func testDataProvider_loadLocations_bad() {
@@ -73,10 +68,6 @@ class PhotoMapsTests: XCTestCase {
         let expectation = self.expectation(description: "testDataProvider_loadLocations_bad")
         let dp = DataProvider(with:  sm)
         dp.loadLocations(withCompletion: { (msg, array) in
-            if msg == nil {
-                XCTFail("errorString is not nil")
-            }
-            
             if let arr = array {
                 if arr.isEmpty {
                     XCTFail("array is empty")
@@ -87,7 +78,7 @@ class PhotoMapsTests: XCTestCase {
 
             expectation.fulfill()
         })
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 3, handler: nil)
         print("completed")
     }
     
@@ -97,66 +88,93 @@ class PhotoMapsTests: XCTestCase {
         let expectation = self.expectation(description: "testDataProvider_loadLocations_error")
         let dp = DataProvider(with:  sm)
         dp.loadLocations( withCompletion: { (msg, array) in
-            if  msg == nil {
-                XCTFail("errorString is not nil")
-            }
             if array == nil {
                 XCTFail("result is nil")
             }
             expectation.fulfill()
         })
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 3, handler: nil)
         print("completed")
     }
  
-//TODO:
-//    func testDataProvider_loadNoteBy() {
-//        let sm = TestSessionManager()
-//        sm.flag = .good
-//        func loadNoteBy(_ name: String) -> Note? {
-//
-//            let note = DataStorageManager.sharedInstance.getNoteBy(name)
-//            return note
+
+    func testDataProvider_load_Location_loadNote_saveNewNote_updateNote() {
+        self.deleteAllRecodsWithCheck()
+        sleep (2)
+        let sm = TestSessionManager()
+        sm.flag = .good
+        let expectation = self.expectation(description: "testDataProvider_loadLocations_error")
+        let dp = DataProvider(with:  sm)
+        dp.loadLocations( withCompletion: { (msg, array) in
+            if  msg != nil {
+                XCTFail("errorString is not nil")
+            }
+            if let locs = array {
+                if let loc = dp.getLocationBy(locs[0].name) {
+                    if loc.name != locs[0].name {
+                        XCTFail("Location did not found")
+                    }
+                }
+            } else {
+                XCTFail("result is nil")
+            }
+            expectation.fulfill()
+        })
+        waitForExpectations(timeout: 3, handler: nil)
+        print("completed")
+    }
+    
+    func testDataProvider_saveLocation() {
+        self.deleteAllRecodsWithCheck()
+        let sm = TestSessionManager()
+        sm.flag = .good
+        let dp = DataProvider(with:  sm)
+        
+        let testStr = "test"
+        let location = LocationModel(testStr, 10, 10)
+        dp.saveLocation(location)
+        sleep (2)
+        if let loc = dp.getLocationBy(testStr) {
+            dp.saveNewNote(loc.name, testStr)
+            sleep (2)
+            if let note = dp.loadNoteBy(loc.name){
+                if note.locationName != loc.name && note.noteValue != testStr {
+                    XCTFail("Saving Note Failed")
+                }
+                let testStr2 = "UPDATED"
+                note.noteValue = testStr2
+                dp.updateNote(note)
+                sleep(2)
+                if let note = dp.loadNoteBy(loc.name){
+                    if note.noteValue != testStr2 {
+                        XCTFail("Updating Note Failed")
+                    }
+                }
+                else {
+                    XCTFail("Updating Note Failed")
+                }
+            } else {
+                XCTFail("Saving Note Failed")
+            }
+        } else {
+            XCTFail("Saving Location Failed")
+        }
+        print("completed")
+    }
+    
+    
+//    func testPerformanceExample() {
+//        // This is an example of a performance test case.
+//        self.measure {
+//            // Put the code you want to measure the time of here.
 //        }
-//
-//        func getLocationBy(_ name: String) -> LocationModel?{
-//            return DataStorageManager.sharedInstance.getLocationBy(name)
-//        }
-//
-//        func saveLocation(_ location: LocationModel) {
-//            DataStorageManager.sharedInstance.saveLocation(location)
-//            NotificationCenter.default.post(Notification(name: userLocationHasAddedNotification))
-//        }
-//
-//
-//        func updateNote(_ note: Note) {
-//            DataStorageManager.sharedInstance.updateNote(note)
-//        }
-//
-//
-//        func saveNewNote(_ locationName: String, _ noteText: String) {
-//            DataStorageManager.sharedInstance.saveNewNote(locationName, noteText)
-//        }
-//        let expectation = self.expectation(description: "testDataProvider_loadLocations_error")
-//        let dp = DataProvider(with:  sm)
-//        dp.loadLocations( withCompletion: { (msg, array) in
-//            if  msg == nil {
-//                XCTFail("errorString is not nil")
-//            }
-//            if array == nil {
-//                XCTFail("result is nil")
-//            }
-//            expectation.fulfill()
-//        })
-//        waitForExpectations(timeout: 5, handler: nil)
-//        print("completed")
 //    }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+//    func testPerformanceExample() {
+//        // This is an example of a performance test case.
+//        self.measure {
+//            // Put the code you want to measure the time of here.
+//        }
+//    }
     
 }

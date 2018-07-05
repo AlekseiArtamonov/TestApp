@@ -26,8 +26,6 @@
 		333FFE9C20EA75EC0078B18F /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333FFE9A20EA75EC0078B18F /* Dynamic.swift */; };
 		333FFEA220EA78210078B18F /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333FFEA120EA78210078B18F /* MapViewModel.swift */; };
 		333FFEA720EA7A270078B18F /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333FFEA620EA7A270078B18F /* LocationModel.swift */; };
-		333FFEA820EA7A270078B18F /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333FFEA620EA7A270078B18F /* LocationModel.swift */; };
-		333FFEA920EA7A270078B18F /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333FFEA620EA7A270078B18F /* LocationModel.swift */; };
 		333FFEAB20EA7D070078B18F /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333FFEAA20EA7D070078B18F /* DataProvider.swift */; };
 		33845AA920EB65AF00C3F38F /* DataStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33845AA820EB65AF00C3F38F /* DataStorageManager.swift */; };
 		33845AB320EB89A400C3F38F /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33845AB220EB89A400C3F38F /* ListViewController.swift */; };
@@ -462,7 +460,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3338724C20EDF04600F796D7 /* SessionManagerProtocol.swift in Sources */,
-				333FFEA820EA7A270078B18F /* LocationModel.swift in Sources */,
 				3338724D20EDF04900F796D7 /* UserLocationServiceProtocol.swift in Sources */,
 				333FFE7320EA5A8F0078B18F /* PhotoMapsTests.swift in Sources */,
 				33B3FA8C20ED90210003F5AF /* Extensions.swift in Sources */,
@@ -477,7 +474,6 @@
 				333FFE7E20EA5A8F0078B18F /* PhotoMapsUITests.swift in Sources */,
 				333FFE9C20EA75EC0078B18F /* Dynamic.swift in Sources */,
 				33B3FA8520ED779E0003F5AF /* Extensions.swift in Sources */,
-				333FFEA920EA7A270078B18F /* LocationModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
