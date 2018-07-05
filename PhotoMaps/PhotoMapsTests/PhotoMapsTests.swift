@@ -108,6 +108,50 @@ class PhotoMapsTests: XCTestCase {
         waitForExpectations(timeout: 5, handler: nil)
         print("completed")
     }
+ 
+//TODO:
+//    func testDataProvider_loadNoteBy() {
+//        let sm = TestSessionManager()
+//        sm.flag = .good
+//        func loadNoteBy(_ name: String) -> Note? {
+//
+//            let note = DataStorageManager.sharedInstance.getNoteBy(name)
+//            return note
+//        }
+//
+//        func getLocationBy(_ name: String) -> LocationModel?{
+//            return DataStorageManager.sharedInstance.getLocationBy(name)
+//        }
+//
+//        func saveLocation(_ location: LocationModel) {
+//            DataStorageManager.sharedInstance.saveLocation(location)
+//            NotificationCenter.default.post(Notification(name: userLocationHasAddedNotification))
+//        }
+//
+//
+//        func updateNote(_ note: Note) {
+//            DataStorageManager.sharedInstance.updateNote(note)
+//        }
+//
+//
+//        func saveNewNote(_ locationName: String, _ noteText: String) {
+//            DataStorageManager.sharedInstance.saveNewNote(locationName, noteText)
+//        }
+//        let expectation = self.expectation(description: "testDataProvider_loadLocations_error")
+//        let dp = DataProvider(with:  sm)
+//        dp.loadLocations( withCompletion: { (msg, array) in
+//            if  msg == nil {
+//                XCTFail("errorString is not nil")
+//            }
+//            if array == nil {
+//                XCTFail("result is nil")
+//            }
+//            expectation.fulfill()
+//        })
+//        waitForExpectations(timeout: 5, handler: nil)
+//        print("completed")
+//    }
+    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {

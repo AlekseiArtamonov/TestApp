@@ -69,7 +69,6 @@ class ListViewModel: NSObject {
             if let errMsg = errMessage {
                 stongSelf.errorMessage.value = errMsg
                 stongSelf.refreshing.value = false
-                return
             }
             if let locs = locations {
                 stongSelf.refreshing.value = false
